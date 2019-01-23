@@ -2,4 +2,3 @@
 .docker/logs/apache/*
 .docker/logs/php/*
 .idea
-!web
