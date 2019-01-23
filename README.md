@@ -10,8 +10,9 @@ Docker LAMP container configured for a Symfony 4 projects but it can be easily a
 ## Installation
 - Clone this into your project root directory
 - To start new Symfony project run `composer create-project symfony/website-skeleton web` or `symfony new --full web`.
-- If you use framework that does have `index.php` file in your project root, instead of `/public`, place whole framework 
-into `/web/public` or modify line `4` of `.docker/apache/vhosts/site.conf` to match your framework structure. 
+- If you use framework that does have `index.php` file in your project root, instead of `/public` or uses other structure: 
+    - Create `/web/public` directory and place your framework into `/web/public` if your framework doesn't separate public code from framework.
+    - Create `/web` directory and modify line `4` of `.docker/apache/vhosts/site.conf` to match your framework structure. 
 - Run `docker-compose build`
 
 ## Usage
