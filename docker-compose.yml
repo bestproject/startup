@@ -1,0 +1,54 @@
+version: '3'
+services:
+  apache:
+    build: .docker/apache
+    container_name: apache_container
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - .docker/apache/vhosts:/etc/apache2/sites-enabled
+      - .docker/logs/apache:/var/log/apache2
+      - .:/var/www/html
+    depends_on:
+      - php
+
+  mysql:
+    image: mysql
+    container_name: mysql_container
+    volumes:
+      - .docker/mysql/data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+
+  php:
+    build: .docker/php
+    container_name: php_container
+    restart: always
+    volumes:
+      - .docker/logs/php:/var/log/php
+      - ./:/var/www/html
+    environment:
+      - maildev_host=maildev_container
+    depends_on:
+      - maildev
+      - mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    ports:
+      - 8080:80
+    links:
+      - mysql
+
+  maildev:
+    image: djfarrelly/maildev
+    container_name: maildev_container
+    ports:
+      - 8081:80
