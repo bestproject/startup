@@ -8,7 +8,10 @@ Docker LAMP container configured for a Symfony 4 projects but it can be easily a
 - MailDev 1.0.0-rc3
 
 ## Installation
-- Clone this into your future project directory
+- Clone this into your project root directory
+- To start new Symfony project run `composer create-project symfony/website-skeleton web` or `symfony new --full web`.
+- If you use framework that does have `index.php` file in your project root, instead of `/public`, place whole framework 
+into `/web/public` or modify line `4` of `.docker/apache/vhosts/site.conf` to match your framework structure. 
 - Run `docker-compose build`
 
 ## Usage
