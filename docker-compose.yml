@@ -9,7 +9,7 @@ services:
     volumes:
       - .docker/apache/vhosts:/etc/apache2/sites-enabled
       - .docker/logs/apache:/var/log/apache2
-      - web:/var/www/html
+      - ${PROJECT_ROOT}:/var/www/html
     depends_on:
       - php
 
@@ -32,7 +32,7 @@ services:
     restart: always
     volumes:
       - .docker/logs/php:/var/log/php
-      - web:/var/www/html
+      - ${PROJECT_ROOT}:/var/www/html
     environment:
       - maildev_host=maildev_container
     depends_on:
