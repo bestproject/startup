@@ -1,5 +1,5 @@
 # Docker Startup
-Docker LAMP container configured for a Symfony 4 projects but it can be easily adjusted for any PHP based framework.
+Docker LAMP container configured for a Symfony 3+ projects but it can be easily adjusted for any PHP based framework.
 
 ## Included software
 - PHP 7.3.1
